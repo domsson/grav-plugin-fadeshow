@@ -1,0 +1,44 @@
+{% set cfg = config.plugins.fadeshow %}
+{% set hdr = page.header.fadeshow %}
+
+{% if cfg.defer_js %}
+	{% do assets.addJs('plugin://fadeshow/js/fadeshow.js', { loading: 'defer' }) %}
+{% else %}
+	{% do assets.addJs('plugin://fadeshow/js/fadeshow.js') %}
+{% endif %}
+
+{% if cfg.built_in_css %}
+	{% do assets.addCSS('plugin://fadeshow/css/fadeshow.css') %}
+{% endif %}
+
+{% set fadeshow_name = hdr.name ? hdr.name|hyphenize : page.slug %}
+<div {{ cfg.attribute }}="{{ fadeshow_name }}">
+	{% set i = 0 %}
+	{% for slide in hdr.slides %}
+	{% set lazy = i == 0 ? 'loading="lazy"' : "" %}
+	<figure class="slide">
+		<img src="{{ page.media[slide.image].url }}" {{ lazy }}>
+		{% if slide.caption %}
+		<figcaption>{{ slide.caption }}</figcaption>
+		{% endif %}
+	</figure>
+	{% set i = (i + 1) %}
+	{% endfor %}
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		(new Fadeshow({
+			"attr": "{{ cfg.attribute }}",
+			"name": "{{ fadeshow_name }}",
+			"duration": {{ hdr.duration ? hdr.duration : 0 }},
+			"add_nav": {{ hdr.add_nav ? "true" : "false" }},
+			"slider_class": "{{ cfg.slider_class }}",
+			"slide_class": "{{ cfg.slide_class }}",
+			"slide_active": "{{ cfg.slide_class_active }}",
+			"slide_hidden": "{{ cfg.slide_class_hidden }}",
+			"nav_class":  "{{ cfg.nav_class }}",
+			"button_class": "{{ cfg.btn_class }}",
+			"button_active": "{{ cfg.btn_class_active }}"
+		})).init();
+	});
+</script>

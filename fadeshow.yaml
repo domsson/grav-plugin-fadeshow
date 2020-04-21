@@ -1,0 +1,14 @@
+enabled: true
+active: true
+
+defer_js: true
+built_in_css: true
+attribute: "data-fadeshow"
+slider_class: "fadeshow"
+slide_class: "fadeshow-slide"
+slide_class_active: "active"
+slide_class_hidden: "hidden"
+nav_class: "fadeshow-nav"
+btn_class: "fadeshow-button" 
+btn_class_active: "active"
+

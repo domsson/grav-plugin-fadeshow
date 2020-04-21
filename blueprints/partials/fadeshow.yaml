@@ -1,0 +1,27 @@
+form:
+    fields:
+        header.fadeshow.name:
+            type: text
+            label: "Custom name"
+            toggleable: true
+        header.fadeshow.add_nav:
+            type: toggle
+            label: PLUGIN_FADESHOW.ADD_NAV
+            highlight: 1
+            default: 1
+            options:
+                1: PLUGIN_FADESHOW.YES
+                0: PLUGIN_FADESHOW.NO
+        header.fadeshow.duration:
+            type: number
+            label: PLUGIN_FADESHOW.DURATION
+        header.fadeshow.slides:
+            type: list 
+            label: PLUGIN_FADESHOW.SLIDES
+            fields:
+               .image:
+                   type: pagemediaselect
+                   label: PLUGIN_FADESHOW.SLIDE_IMAGE
+               .caption:
+                   type: text
+                   label: PLUGIN_FADESHOW.SLIDE_CAPTION

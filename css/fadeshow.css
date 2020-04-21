@@ -1,0 +1,72 @@
+.fadeshow {
+	display: grid;
+	position: relative;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+	border-radius: .375em;
+	overflow: hidden;
+}
+
+.fadeshow-slide {
+	grid-row-start: 1;
+	grid-column-start: 1;
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
+
+.fadeshow-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.fadeshow-slide figcaption {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	padding: 1em 1.5em;
+	background: rgba(255,255,255,0.75);
+}
+
+.fadeshow-slide.active {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 1s, visibility 1s;
+}
+
+.fadeshow-slide.hidden {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 1s, visibility 1s;
+}
+
+.fadeshow-nav {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+	list-style: none;
+	justify-content: flex-end;
+}
+
+.fadeshow-button {
+	display: block;
+	padding: 1em 1.5em;
+	margin-left: 1em;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	border-radius: .375em;
+	background: rgba(255,255,255,0.25);
+}
+		
+.fadeshow-button.active,
+.fadeshow-button:hover {
+	background: rgba(255,255,255,0.75);
+}

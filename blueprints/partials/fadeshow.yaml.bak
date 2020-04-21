@@ -1,0 +1,31 @@
+form:
+    fields:
+        header.fadeshow:
+            type: section
+            title: "FADESHOW"
+            underline: true
+            fields:
+                header.fadeshow.navigation:
+                    type: toggle
+                    label: PLUGIN_FADESHOW.ADMIN.SHOW_NAV
+                    highlight: 1
+                    default: 1
+                    options:
+                       1: PLUGIN_FADESHOW.ADMIN.YES
+                       0: PLUGIN_FADESHOW.ADMIN.NO
+                header.fadeshow.duration:
+                    type: number
+                    label: PLUGIN_FADESHOW.ADMIN.DURATION
+                header.fadeshow.slides:
+                    type: list
+                    label: PLUGIN_FADESHOW.ADMIN.SLIDES
+                    fields:
+                        .image:
+                            type: pagemediaselect
+                            label: PLUGIN_FADESHOW.ADMIN.IMAGE
+                        .caption:
+                            type: text
+                            label: PLUGIN_FADESHOW.ADMIN.CAPTION
+                        .description:
+                            type: textarea
+                            label: PLUGIN_FADESHOW.ADMIN.DESCRIPTION
