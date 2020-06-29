@@ -1,7 +1,7 @@
 name: Fadeshow
-version: 0.1.0
+version: 1.0.0
 description: Enables the creation of a simple fading slideshow
-icon: images 
+icon: image 
 author:
     name: Julien Dau
     email: julien.d.dau@gmail.com
@@ -22,16 +22,6 @@ form:
             label: PLUGIN_FADESHOW.ENABLED
             highlight: 1
             default: 0
-            options:
-                1: PLUGIN_FADESHOW.YES
-                0: PLUGIN_FADESHOW.NO
-            validate:
-                type: bool
-        defer_js:
-            type: toggle
-            label: PLUGIN_FADESHOW.DEFER_JS
-            highlight: 1
-            default: 1
             options:
                 1: PLUGIN_FADESHOW.YES
                 0: PLUGIN_FADESHOW.NO

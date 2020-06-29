@@ -24,17 +24,15 @@ class FadeshowPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            ['autoload', 100000], // TODO: Remove when plugin requires Grav >=1.7
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
         ];
     }
 
     /**
-    * Composer autoload.
-    *is
-    * @return ClassLoader
-    */
+     * Composer autoload.
+     * @return ClassLoader
+     */
     public function autoload(): ClassLoader
     {
         return require __DIR__ . '/vendor/autoload.php';
@@ -53,11 +51,35 @@ class FadeshowPlugin extends Plugin
      */
     public function onPluginsInitialized()
     {
+	$this->active = $this->config->get('plugins.'. $this->name .'.active');
+
         if ($this->isAdmin()) {
             $this->enable([
-                'onGetPageBlueprints' => ['onGetPageBlueprints', 0] 
+                'onGetPageBlueprints' => ['onGetPageBlueprints', 0]
             ]);
         }
+
+        elseif ($this->active) {
+            $this->enable([
+                'onTwigSiteVariables' => ['onTwigSiteVariables', 0]
+            ]);
+        }
+    }
+
+    /**
+     * Load JS and CSS assets.
+     */
+    public function onTwigSiteVariables()
+    {
+        $config = $this->config->get('plugins.'. $this->name);
+
+	// Add built-in JS
+	$this->grav['assets']->addJs('plugin://'. $this->name .'/js/'. $this->name .'.js');
+	
+	// Add built-in CSS, if we're supposed to according to the config
+	if ($config['built_in_css']) {
+		$this->grav['assets']->addCss('plugin://'. $this->name .'/css/'. $this->name .'.css');
+	}
     }
 
     /**
@@ -65,7 +87,6 @@ class FadeshowPlugin extends Plugin
      */
     public function onGetPageBlueprints(Event $event)
     {
-        $types = $event->types;
-        $types->scanBlueprints('plugin://' . $this->name . '/blueprints');
+        $event->types->scanBlueprints('plugin://'. $this->name .'/blueprints');
     }
 }

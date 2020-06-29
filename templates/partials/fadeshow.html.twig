@@ -1,16 +1,6 @@
 {% set cfg = config.plugins.fadeshow %}
 {% set hdr = page.header.fadeshow %}
 
-{% if cfg.defer_js %}
-	{% do assets.addJs('plugin://fadeshow/js/fadeshow.js', { loading: 'defer' }) %}
-{% else %}
-	{% do assets.addJs('plugin://fadeshow/js/fadeshow.js') %}
-{% endif %}
-
-{% if cfg.built_in_css %}
-	{% do assets.addCSS('plugin://fadeshow/css/fadeshow.css') %}
-{% endif %}
-
 {% set fadeshow_name = hdr.name ? hdr.name|hyphenize : page.slug %}
 <div {{ cfg.attribute }}="{{ fadeshow_name }}">
 	{% set i = 0 %}

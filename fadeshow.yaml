@@ -1,7 +1,6 @@
 enabled: true
 active: true
 
-defer_js: true
 built_in_css: true
 attribute: "data-fadeshow"
 slider_class: "fadeshow"
